@@ -12,7 +12,7 @@ def detect_size_guide(soup):
             href = el.get("href")
             results.append({
                 "type": el.name,
-                "text": text,
+                "text": text_to_analyze,
                 "url": href
             })
             
