@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 
-def create_excel(results: list, output_path: str = output/size_guides.xlsx):
+def create_excel(results: list, output_path: str = "output/size_guides.xlsx"):
     
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     

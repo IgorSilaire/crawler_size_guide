@@ -1,9 +1,10 @@
 from crawler.browser import Browser
 from analyzer.cookies import accept_cookies
 
-def crawl(url :str, headless: bool = True) -> str:
+def crawl(url :str, headless: bool = False) -> str:
     with Browser(headless=headless) as page:
         page.goto(url, timeout = 60_000)
+        page.wait_for_timeout(2000)
         accept_cookies(page)
-        page.wait_for_load_state("networkidle")
+        page.wait_for_timeout(2000)
         return page.content() 

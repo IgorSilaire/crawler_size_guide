@@ -17,8 +17,8 @@ def detect_size_guide(soup):
             })
             
     return {
-        "The website has a guide size" : len(results) > 0,
-        " way to the guide size" : len(results),
-        "guides": results
-    }    
+    "has_size_guide": len(results) > 0,
+    "count": len(results),
+    "guides": results
+    }
         

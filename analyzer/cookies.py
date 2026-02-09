@@ -5,10 +5,14 @@ from utils.cookies_selectors import (
 )
 
 def accept_cookies(page, timeout: int = 3000):
+    print("Trying to accept cookies...")
     for selector in COMMON_ACCEPT_SELECTORS:
         try:
             page.click(selector, timeout = timeout)
+            print("Cookies accepted")
             return True
+            
+
         except:
             pass
         
@@ -18,6 +22,7 @@ def accept_cookies(page, timeout: int = 3000):
             text = button.inner_text.lower()
             if any(word in text for word in ACCEPT_WORDS_FR):
                 button.click()
+                print("Cookies accepted")
                 return True
     except:
         pass
@@ -26,6 +31,7 @@ def accept_cookies(page, timeout: int = 3000):
         for selector in IFRAME_ACCEPT_SELECTORS:
             try:
                 frame.click(selector, timeout = timeout)
+                print("Cookies accepted")
                 return True
             except:
                 pass
