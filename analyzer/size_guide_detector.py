@@ -4,17 +4,21 @@ from analyzer.guide_size_selectors import SIZE_GUIDE_SELECTORS
 
 def detect_size_guide(soup):
     
-    links = []
+    results = []
     
-    for a in soup.find_all("a"):
-        text_to_analyze = a.get_text(strip = True).lower()
+    for el in soup.find_all(["a", "button", "span", "div"]):
+        text_to_analyze = el.get_text(strip = True).lower()
         if any (keywords in text_to_analyze for keywords in SIZE_GUIDE_SELECTORS):
-            href = a.get("href")
-            if href:
-                links.append(href)
+            href = el.get("href")
+            results.append({
+                "type": el.name,
+                "text": text,
+                "url": href
+            })
             
     return {
-        "The website has a guide size" : len(links) > 0,
-        "URLs to the size guide(s)" : list(set(links)),
+        "The website has a guide size" : len(results) > 0,
+        " way to the guide size" : len(results),
+        "guides": results
     }    
         
