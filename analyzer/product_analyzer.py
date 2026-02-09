@@ -6,14 +6,14 @@ def analyze_product(html: str, url: str):
 
     size_guide_info = detect_size_guide(soup)
 
+    product_name = soup.title.get_text(strip=True) if soup.title else ""
+    gender = "Unknown"   
+    product_type = "Unknown"
+    
     return {
+        "product_name": product_name,
+        "gender": gender,
+        "product_type": product_type,
         "product_url": url,
-        "has_size_guide": size_guide_info["has_size_guide"],
-        "guide_count": size_guide_info["count"],
-        "guide_types": list(
-            {g["type"] for g in size_guide_info["guides"]}
-        ),
-        "guide_urls": list(
-            {g["url"] for g in size_guide_info["guides"] if g["url"]}
-        )
+        "has_size_guide": 1 if size_guide_info["has_size_guide"] else 0
     }

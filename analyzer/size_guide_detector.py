@@ -1,6 +1,6 @@
 # analyzer\size_guide_detector.py
 
-from analyzer.guide_size_selectors import SIZE_GUIDE_SELECTORS
+from utils.guide_size_selectors import SIZE_GUIDE_SELECTORS
 
 def detect_size_guide(soup):
     

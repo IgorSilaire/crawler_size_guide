@@ -1,4 +1,4 @@
-from cookies_data.dictWords import (
+from utils.cookies_selectors import (
     ACCEPT_WORDS_FR,
     IFRAME_ACCEPT_SELECTORS,
     COMMON_ACCEPT_SELECTORS,

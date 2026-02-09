@@ -1,4 +1,4 @@
-# analyzer/guide_size_selectors.py
+# utils/guide_size_selectors.py
 
 SIZE_GUIDE_SELECTORS = [
     "guide des tailles",

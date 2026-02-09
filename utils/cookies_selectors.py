@@ -1,4 +1,4 @@
-# cookies_data/dictWords.py
+# utils/cookies_selectors.py
 
 ACCEPT_WORDS_FR = [
     "accepter",
