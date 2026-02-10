@@ -1,21 +1,6 @@
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
-
-KEYWORDS = [
-    "guide des tailles",
-    "guide de taille",
-    "size guide",
-    "size chart",
-    "grille des pointures",
-    "dimensions"
-]
-
-GENDER_KEYWORDS = {
-    "homme": "Homme",
-    "men": "Homme",
-    "femme": "Femme",
-    "women": "Femme",
-}
+from config.keywords import SIZE_GUIDE_KEYWORDS, GENDER_KEYWORDS
 
 def analyze_product_playwright(url: str) -> dict:
     with sync_playwright() as p:
@@ -37,16 +22,12 @@ def analyze_product_playwright(url: str) -> dict:
 
     soup = BeautifulSoup(html, "html.parser")
 
-    # 1️⃣ Nom du produit
     h1 = soup.find("h1")
     product_name = h1.get_text(strip=True) if h1 else "Unknown"
 
-    # 2️⃣ Détection guide de taille (déjà OK)
-    has_size_guide = any(k in html.lower() for k in KEYWORDS)
+    has_size_guide = any(k in html.lower() for k in SIZE_GUIDE_KEYWORDS)
 
-    # 3️⃣ Détection du genre (breadcrumbs + texte)
     gender = "Unisex"
-
     for el in soup.find_all(["nav", "ul", "ol"]):
         text = el.get_text(" ").lower()
         for key, value in GENDER_KEYWORDS.items():
