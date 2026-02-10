@@ -1,3 +1,5 @@
+"""
+Docstring for exporters.excel_exporter
 import pandas as pd
 from pathlib import Path
 
@@ -18,3 +20,13 @@ def create_excel(results: list, output_path: str = "output/size_guides.xlsx"):
 
     df = pd.DataFrame(rows)
     df.to_excel(output_path, index=False)
+"""
+
+import pandas as pd
+from pathlib import Path
+
+def export_results(results: list, output="output/size_guides.xlsx"):
+    Path("output").mkdir(exist_ok=True)
+
+    df = pd.DataFrame(results)
+    df.to_excel(output, index=False)

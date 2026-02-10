@@ -1,17 +1,28 @@
-from crawler.crawler import crawl
-from analyzer.product_analyzer import analyze_product
-from exporters.excel_exporter import create_excel
+from discovery.shopify_products import discover_shopify_products
+from crawler.playwright_check import analyze_product_playwright
+from exporters.excel_exporter import export_results
 
-URLS = [
-    "https://kleman-france.com/products/padror-th-cognac",
-    "https://www.prada.com/fr/fr/p/blouson-en-re-nylon/SGD103_1WQ8_F0SVF_S_OOO"
+COLLECTION_URLS = [
+    #"https://kleman-france.com/collections/chaussures-derbies",
+    #"https://kleman-france.com/collections/chaussures-boots",
+    #"https://kleman-france.com/collections/accessoires-bonnets",
+    #"https://www.labottegardiane.com/collections/baskets",
+    #"https://www.labottegardiane.com/collections/sandales-femme",
+    #"https://www.labottegardiane.com/collections/sacs"
+    "https://www.prada.com/fr/fr/womens/shoes/c/10070EU"
+    
 ]
 
 results = []
 
-for url in URLS:
-    html = crawl(url, headless=False)  
-    product_result = analyze_product(html, url)
-    results.append(product_result)
+for collection_url in COLLECTION_URLS:
+    product_urls = discover_shopify_products(collection_url)
 
-create_excel(results)
+    for product_url in product_urls:
+        try:
+            result = analyze_product_playwright(product_url)
+            results.append(result)
+        except Exception:
+            pass
+
+export_results(results)
