@@ -1,15 +1,15 @@
-from discovery.shopify_products import discover_shopify_products
+from discovery.search_products import discover_shopify_products
 from crawler.playwright_check import analyze_product_playwright
 from exporters.excel_exporter import export_results
 
 COLLECTION_URLS = [
-    #"https://kleman-france.com/collections/chaussures-derbies",
-    #"https://kleman-france.com/collections/chaussures-boots",
-    #"https://kleman-france.com/collections/accessoires-bonnets",
-    #"https://www.labottegardiane.com/collections/baskets",
-    #"https://www.labottegardiane.com/collections/sandales-femme",
-    #"https://www.labottegardiane.com/collections/sacs"
-    "https://www.prada.com/fr/fr/womens/shoes/c/10070EU"
+    "https://kleman-france.com/collections/chaussures-derbies",
+    "https://kleman-france.com/collections/chaussures-boots",
+    "https://kleman-france.com/collections/accessoires-bonnets",
+    "https://www.labottegardiane.com/collections/baskets",
+    "https://www.labottegardiane.com/collections/sandales-femme",
+    "https://www.labottegardiane.com/collections/sacs"
+    #"https://www.prada.com/fr/fr/womens/shoes/c/10070EU"
     
 ]
 
