@@ -123,7 +123,7 @@ Keywords are centralized in:
 
 config/keywords.py
 
-## ⚠️ Limitations
+## Limitations
 
 Some websites may restrict automated exploration:
 
